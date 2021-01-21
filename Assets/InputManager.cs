@@ -15,6 +15,20 @@ public class InputManager : MonoBehaviour
 
         // TODO: print out "10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0" (for loop)
 
+        string solution = "";
+
+        for(int i = 10; i >= 0; i--)
+        {
+            if(i == 0)
+            {
+                solution = solution + i;
+            }
+            else
+            {
+                solution = solution + i + ", ";
+            }
+        }
+        PrintAnswer(solution);
     }
 
     // exercise 2
@@ -23,6 +37,17 @@ public class InputManager : MonoBehaviour
         int min = int.Parse(input1.text);
 
         // TODO: print out even numbers from range min, min + 10
+
+        string solution = "" + min;
+
+        for(int i = min; i <= min + 10; i++)
+        {
+            if(i % 2 == 0)
+            {
+                solution += ", " + i;
+            }
+        }
+        PrintAnswer(solution);
     }
 
     // exercise 3
@@ -31,8 +56,16 @@ public class InputManager : MonoBehaviour
         int n = int.Parse(input1.text);
 
         // TODO: print out the sum of integers from 0 to n
-        // n = 3 -> result = 6
+        // n = 3 -> result = 6 = 1 + 2 + 3
 
+        int sum = 0;
+
+        for(int i = 0; i <= n; i++) // 0, 1, 2, 3, ... n
+        {
+            sum += i;   // 0, 1, 3, 6, 10, ...
+        }
+
+        PrintAnswer(sum.ToString());
     }
 
     // exercise 4
@@ -43,6 +76,22 @@ public class InputManager : MonoBehaviour
         // TODO: print out the sum of digits of the number
         // n = 145 -> result = 10
 
+        int sum = 0;
+
+        // 145 -> sum: 5, n : 14 -> sum: 9, n: 1 -> sum: 10, n : 0 -> end
+
+        //while(n > 0)
+        //{
+            //sum += n % 10; // 145 % 10 = 5, 14 % 10 = 4
+            //n /= 10;    // 145, 14, 1, 0
+        //}
+
+        for(int i = n; i > 0; i /= 10)
+        {
+            sum += i % 10;
+        }
+
+        PrintAnswer(sum.ToString());
     }
 
     // exercise 5
@@ -56,6 +105,25 @@ public class InputManager : MonoBehaviour
         // ***
         // ****
         // {number of rows = n, in this case n=4}
+        //
+        // i=0 *
+        // i=1 **
+        // i=2 ***
+        // i=3 ****
+
+
+        string solution = "";
+
+        for(int i = 0; i < n; i++)
+        {
+            for(int j = 0; j <= i; j++)
+            {
+                solution += "*";
+            }
+            solution += "\n";
+        }
+
+        PrintAnswer(solution);
     }
 
     // exercise 6
@@ -63,15 +131,35 @@ public class InputManager : MonoBehaviour
     {
         int n = int.Parse(input1.text);
 
-        // TODO: print out the first n Fibonacci's numbers
-        // n = 6 -> result = "0, 1, 1, 2, 3, 5)
+        // Fibonacci numbers: 0, 1, 1, 2, 3, 5, 8, 13, 21, ...
 
+        // TODO: print out the first n Fibonacci's numbers
+        // n = 6 -> result = "0, 1, 1, 2, 3, 5")
+
+        int a = 0;
+        int b = 1;
+
+        string result = "0, 1";
+
+        int temp;
+
+        for(int i = 2; i < n; i++)
+        {
+            temp = a + b;
+            result += ", " + temp;
+            a = b; // 0 -> 1, 1 -> 1, 1 -> 2, ...
+            b = temp;
+        }
+
+        PrintAnswer(result);
     }
 
     // exercise 7
     public void Palindrome()
     {
         string word = input1.text;
+
+        // word[0] - prvy znak
 
         // TODO: check, whether the word is a palindrome
         // abba -> is a palindrome, abcd -> is not a palindrome
